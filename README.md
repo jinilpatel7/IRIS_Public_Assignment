@@ -10,29 +10,19 @@ This project is a **FastAPI-based Excel Processing API** that reads an Excel she
 ---
 
 ## 📁 Directory Structure
+```
 IRIS_Public_Assignment/
-
 ├── app/
-
 │ └── api.py # All FastAPI route definitions.
-
 | └── main.py # Entry point - app setup, routers
-
 ├── src/
-
 │ └── parser.py # Core logic to parse Excel files
-
 ├── Data/
-
 │ └── capbudg.xls # Excel file to be processed
-
 ├── requirements.txt # Python dependencies
-
 ├── FastAPI_Excel_Processor.postman_collection.json
-
 └── README.md # Project documentation
-
-
+```
 ---
 
 ## 🚀 Features
@@ -45,7 +35,9 @@ IRIS_Public_Assignment/
 ---
 
 🌐 API Endpoints
+
 1. GET /list_tables
+   
 Functionality: Lists all the table names extracted from the Excel sheet.
 
 Example Response:
