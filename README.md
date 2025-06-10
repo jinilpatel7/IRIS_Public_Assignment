@@ -36,11 +36,13 @@ IRIS_Public_Assignment/
 
 🌐 API Endpoints
 
-1. GET /list_tables
-   
-Functionality: Lists all the table names extracted from the Excel sheet.
+### 1. `GET /list_tables`
 
-Example Response:
+**Functionality**:  
+Lists all the table names extracted from the Excel sheet.
+
+**Example Response**:
+```json
 {
   "tables": [
     "salvage_value",
@@ -53,16 +55,20 @@ Example Response:
     "Discount_rate",
     "Investment_measure_2",
     "initial_investment2"
-    ]
+  ]
 }
+```
 
-2. GET /get_table_details?table_name=<table_name>
-Functionality: Returns the names of all rows in the first column for a given table.
+### 2. `GET /get_table_details?table_name=<table_name>`
 
-Example:
-Request:
+**Functionality**: 
+Returns the names of all rows in the first column for a given table.
+
+**Example Request**:
 http://127.0.0.1:9090/get_table_details?table_name=OPERATING%20CASHFLOWS
-Response:
+
+**Example Request**:
+```
 {
   "table_name": "OPERATING CASHFLOWS",
   "row_names": [
@@ -83,23 +89,28 @@ Response:
     "Discounted CF"
   ]
 }
+```
 
-3. GET /row_sum?table_name=<table_name>&row_name=<row_name>
-Functionality: Calculates and returns the sum of all numerical values in a given row.
+### 3. ` GET /row_sum?table_name=<table_name>&row_name=<row_name> `
+**Functionality**: 
+Calculates and returns the sum of all numerical values in a given row.
 
-Example:
-Request:
+**Example Request**:
 http://localhost:9090/row_sum?table_name=INITIAL%20INVESTMENT&row_name=%2B%20Opp.%20Cost
-Response:
+
+**Example Request**:
+```
 {
   "table": "INITIAL INVESTMENT",
   "row": "+ Opp. Cost",
   "sum": 7484
 }
+```
 ---
 
 ## 🛠️ Setup Instructions
 
+```
 1. **Clone the repository**
 
    In bash
@@ -114,3 +125,4 @@ Response:
 3. **Run the application**
    uvicorn app.api:app --reload --port 9090
 
+```
