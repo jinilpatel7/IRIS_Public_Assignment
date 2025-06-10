@@ -2,94 +2,112 @@
 
 ## Overview
 
-The primary goal of this assignment is to assess your understanding of API development using FastAPI, your problem-solving skills, your coding style, and your ability to present your work clearly and professionally.
+This project is a **FastAPI-based Excel Processing API** that reads an Excel sheet and exposes endpoints to:
+- 🔍 List all detected tables in the file
+- 📋 Retrieve row names from a specific table
+- ➕ Compute the sum of all numerical values in a specific row of a selected table
 
-You are tasked with creating a FastAPI application that can read data from a given Excel sheet and expose a few endpoints to interact with this data.
+---
 
-## Tasks
+## 📁 Directory Structure
+IRIS_Public_Assignment/
+├── app/
+│ └── api.py # All FastAPI route definitions.
+| └── main.py # Entry point - app setup, routers
+├── src/
+│ └── parser.py # Core logic to parse Excel files
+├── Data/
+│ └── capbudg.xls # Excel file to be processed
+├── requirements.txt # Python dependencies
+├── FastAPI_Excel_Processor.postman_collection.json
+└── README.md # Project documentation
 
-Your main task is to develop a FastAPI application with the following functionalities:
+---
 
-### 1. Excel Sheet Processing
-The application must be able to read a provided Excel sheet and parse its contents (`/Data/capbudg.xls`).
+## 🚀 Features
 
-### 2. API Endpoints
-You need to implement the following FastAPI endpoints. Please use `http://localhost:9090` as the base URL for your endpoints.
+✅ Supports `.xls`, `.xlsx`, and `.csv`  
+✅ Automatically detects multiple tables in each sheet  
+✅ API-first design, tested via Postman  
+✅ Modular architecture
 
-#### a. `GET /list_tables`
-   - **Functionality:** This endpoint should list all the table names present in the uploaded/specified Excel sheet.
-   - **Response Example:**
-     ```json
-     {
-       "tables": ["Initial Investment", "Revenue Projections", "Operating Expenses"]
-     }
-     ```
+---
 
-#### b. `GET /get_table_details`
-   - **Parameters:**
-     - `table_name: str` (Query parameter specifying the name of the table)
-   - **Functionality:** This endpoint should return the names of the rows for the selected table. These row names are typically the values found in the first column of that table.
-   - **Example:** If the user selects the "Initial Investment" table, the API should list the first column values like so:
-     ```json
-     {
-       "table_name": "Initial Investment",
-       "row_names": [
-         "Initial Investment=",
-         "Opportunity cost (if any)=",
-         "Lifetime of the investment",
-         "Salvage Value at end of project=",
-         "Deprec. method(1:St.line;2:DDB)=",
-         "Tax Credit (if any )=",
-         "Other invest.(non-depreciable)="
-       ]
-     }
-     ```
+🌐 API Endpoints
+1. GET /list_tables
+Functionality: Lists all the table names extracted from the Excel sheet.
 
-#### c. `GET /row_sum`
-   - **Parameters:**
-     - `table_name: str` (Query parameter specifying the name of the table)
-     - `row_name: str` (Query parameter specifying the name of the row, which must be one of the names returned by `/get_table_details`)
-   - **Functionality:** This endpoint should calculate and return the sum of all numerical data points in the specified row of the specified table.
-   - **Example:** If the `row_name` is `"Tax Credit (if any )="` for a table where this row contains the value `10` (or `10%`), the output should be:
-     ```json
-     {
-       "table_name": "Initial Investment",
-       "row_name": "Tax Credit (if any )=",
-       "sum": 10 
-     }
-     ```
-     *(Note: You can decide whether to include units like '%' in the response or just return the numerical sum. Please clarify your approach in your documentation.)*
+Example Response:
+{
+  "tables": [
+    "salvage_value",
+    "operating_cashflows",
+    "book_value_deprication",
+    "cashflow_details",
+    "initial_investment",
+    "working_capital",
+    "Growth_rate",
+    "Discount_rate",
+    "Investment_measure_2",
+    "initial_investment2"
+    ]
+}
 
-## Evaluation Criteria
+2. GET /get_table_details?table_name=<table_name>
+Functionality: Returns the names of all rows in the first column for a given table.
 
-We will be evaluating your submission based on the following:
+Example:
+Request:
+http://127.0.0.1:9090/get_table_details?table_name=OPERATING%20CASHFLOWS
+Response:
+{
+  "table_name": "OPERATING CASHFLOWS",
+  "row_names": [
+    "OPERATING CASHFLOWS",
+    "Lifetime Index",
+    "Revenues",
+    "-Var. Expenses",
+    "- Fixed Expenses",
+    "EBITDA",
+    "- Depreciation",
+    "EBIT",
+    "-Tax",
+    "EBIT(1-t)",
+    "+ Depreciation",
+    "- ∂ Work. Cap",
+    "NATCF",
+    "Discount Factor",
+    "Discounted CF"
+  ]
+}
 
-*   **Problem-Solving Skills:** Your ability to understand the requirements and implement a functional solution.
-*   **Coding Style:** Clarity, organization, and adherence to Python best practices. We expect well-structured, modular code, with docstrings, and robust error handling etc.
-*   **Presentation Style:** The quality and completeness of this `README.md` file (which you will update with your insights) and the Postman collection.
-*   **Documentation:** Ensure your code is well-documented.
+3. GET /row_sum?table_name=<table_name>&row_name=<row_name>
+Functionality: Calculates and returns the sum of all numerical values in a given row.
 
-## Your Insights
+Example:
+Request:
+http://localhost:9090/row_sum?table_name=INITIAL%20INVESTMENT&row_name=%2B%20Opp.%20Cost
+Response:
+{
+  "table": "INITIAL INVESTMENT",
+  "row": "+ Opp. Cost",
+  "sum": 7484
+}
+---
 
-Please complete the following sections with your thoughts on the assignment.
+## 🛠️ Setup Instructions
 
-### Potential Improvements
-*(Describe any ideas you have on how this application or assignment could be improved or extended. For example, handling different Excel formats, more advanced data operations, UI integration, etc.)*
+1. **Clone the repository**
 
-### Missed Edge Cases
-*(Identify any edge cases or scenarios that your current implementation might not handle or that were not explicitly covered in the requirements. For example, empty Excel files, tables with no numerical data, malformed table names, etc.)*
+   In bash
+   git clone https://github.com/jinilpatel7/IRIS_Public_Assignment.git
+   cd IRIS_Public_Assignment
 
-## Testing
+2. **Create virtual environment & install dependencies**
+   python -m venv venv
+   source venv/bin/activate  # or venv\Scripts\activate on Windows
+   pip install -r requirements.txt
 
-To help us quickly test your application, please provide a Postman collection JSON.
+3. **Run the application**
+   uvicorn app.api:app --reload --port 9090
 
-*   **Base URL:** `http://localhost:9090` and the given endpoint names.
-*   **Postman Collection:** 
-
-## Deadline
-
-Please submit your solution by **Saturday, May 10th, EOD**. Ensure you fill out the form provided in your email with the repository link (make sure the repository is public) and any other requested details. We plan to evaluate the submissions early Sunday morning and will schedule final interviews on the same day.
-
-Feel free to open an issue in this repo if you have any questions. Your honesty is appreciated in this test.
-
-Good luck! We look forward to reviewing your submission. 
