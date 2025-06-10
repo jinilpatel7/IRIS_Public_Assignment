@@ -1,0 +1,135 @@
+{
+  "info": {
+    "name": "FastAPI Excel Processor",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_postman_id": "b3a43793-9b0f-4e78-bc2a-b944cc1e304f"
+  },
+  "item": [
+    {
+      "name": "List Tables",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:9090/list_tables",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "9090",
+          "path": ["list_tables"]
+        }
+      }
+    },
+    {
+      "name": "Get Table Details - INITIAL INVESTMENT",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:9090/get_table_details?table_name=INITIAL INVESTMENT",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "9090",
+          "path": ["get_table_details"],
+          "query": [
+            {
+              "key": "table_name",
+              "value": "INITIAL INVESTMENT"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Row Sum - INITIAL INVESTMENT > Initial Investment",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:9090/row_sum?table_name=INITIAL INVESTMENT&row_name=Initial Investment",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "9090",
+          "path": ["row_sum"],
+          "query": [
+            {
+              "key": "table_name",
+              "value": "INITIAL INVESTMENT"
+            },
+            {
+              "key": "row_name",
+              "value": "Initial Investment"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Row Sum - INITIAL INVESTMENT > + Opp. Cost",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:9090/row_sum?table_name=INITIAL%20INVESTMENT&row_name=%2B%20Opp.%20Cost",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "9090",
+          "path": ["row_sum"],
+          "query": [
+            {
+              "key": "table_name",
+              "value": "INITIAL INVESTMENT"
+            },
+            {
+              "key": "row_name",
+              "value": "+ Opp. Cost"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Table Details - WORKING CAPITAL",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:9090/get_table_details?table_name=WORKING CAPITAL",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "9090",
+          "path": ["get_table_details"],
+          "query": [
+            {
+              "key": "table_name",
+              "value": "WORKING CAPITAL"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Row Sum - WORKING CAPITAL > Initial Investment in Work. Cap=",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:9090/row_sum?table_name=WORKING CAPITAL&row_name=Initial Investment in Work. Cap=",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "9090",
+          "path": ["row_sum"],
+          "query": [
+            {
+              "key": "table_name",
+              "value": "WORKING CAPITAL"
+            },
+            {
+              "key": "row_name",
+              "value": "Initial Investment in Work. Cap="
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
