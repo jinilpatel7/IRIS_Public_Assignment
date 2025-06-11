@@ -123,6 +123,6 @@ http://localhost:9090/row_sum?table_name=INITIAL%20INVESTMENT&row_name=%2B%20Opp
    pip install -r requirements.txt
 
 3. **Run the application**
-   uvicorn app.api:app --reload --port 9090
+   uvicorn app.main:app --reload --port 9090
 
 ```
